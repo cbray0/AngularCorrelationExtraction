@@ -28,6 +28,7 @@ public:
     void FitPeak(TH1D* [52], Double_t, Double_t [52]);
     void Normalize(Double_t [52], Double_t [52]);
     void Error(Double_t [52], Double_t [52]);
+    void CorrelationPlot(Double_t [52], Double_t [52]); 
 
 private:
 };

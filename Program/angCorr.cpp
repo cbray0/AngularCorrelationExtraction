@@ -31,6 +31,7 @@ angCorr::angCorr() {
     Double_t normErrors[52];
     Normalize(errors, normErrors);
 
+    CorrelationPlot(normCounts, normErrors);
 
 }
 
@@ -48,7 +49,7 @@ angCorr::~angCorr() {
 
 void angCorr::GetData(TH3D* xyzProj){
 
-    TFile* isoData = new TFile("/home/data/cnatzke/SimulationResults/Converted20mm.root");
+    TFile* isoData = new TFile("/home/data/cnatzke/SimulationResults/Converted50mm.root");
     isoData->cd("GriffinND");
     THnSparse* dataFull = (THnSparse*) gDirectory->Get("griffin_crystal_unsup_gamma_gamma_corr_edep_cry_sparse");
     cout << "File Loaded" << endl;
@@ -208,4 +209,70 @@ void angCorr::Error(Double_t counts[52], Double_t errors[52]) {
 }
 
 
+///////////////////////////////////////////////////////////////
+// Plots counts vs angle
+///////////////////////////////////////////////////////////////
+
+void angCorr::CorrelationPlot(Double_t normCounts[52], Double_t normError[52]){
+
+    Double_t indexDeg[52] = {0.0, 18.79097, 25.60153, 26.69036, 31.94623, 33.65414, 44.36426, 46.79372, 48.57554, 49.79788, 53.83362, 60.15106, 62.70487, 63.08604, 65.01569, 66.46082, 67.45617, 69.86404, 70.86009, 73.08384, 76.38138, 78.66898, 83.04252, 86.22840, 86.23761, 88.47356, 91.52644, 93.76239, 93.77160, 96.95749, 101.33102, 103.61822, 106.91616, 109.13991, 110.13596, 112.54383, 113.53918, 114.98431, 116.91396, 117.29513, 119.84894, 126.16638, 130.20212, 131.42446, 133.20628, 135.63574, 146.34586, 148.05377, 153.30964, 154.39847, 161.21315, 180.0};
+
+    Double_t indexCos[52];
+    Double_t indexError[52];
+
+    for(Int_t i=0;i<52;i++){
+        indexCos[i] = TMath::Cos(indexDeg[i]*TMath::Pi()/180);
+        indexError[i] = 0.;
+    }
+
+    GCanvas* c3 = new GCanvas();
+    gStyle->SetOptStat(0);                                  // Turn off histogram statistics
+
+    TGraphErrors* g = new TGraphErrors(52, indexCos, normCounts, indexError, normError);
+
+    TString gName("1172 to 1332 keV Decay (4^{+} #rightarrow 2^{+} #rightarrow 0^{+});Cos(#theta);Normalized Counts");
+    
+    TF1* fit = new TF1("fit", "(1+0.5*[0]*(3*x*x-1)+0.125*[1]*(35*x*x*x*x-30*x*x+3))*[2]",-1,1);
+//    fit->SetParameter(0,0.01);
+//    fit->SetParameter(1,1.0);
+//    fit->SetParameter(2,150);
+    fit->SetParName(0,"a2");
+    fit->SetParName(1,"a4");
+    fit->SetParName(2,"scale");
+
+    g->Fit(fit);
+    gStyle->SetOptFit(1);               // Displays fit information`
+
+    Double_t max = TMath::MaxElement(52, g->GetY());
+    Double_t min = fit->GetMinimum();
+
+    // Graph Styling
+    g->SetTitle(gName);
+    g->SetMaximum(max+20);
+    g->SetMinimum(min-20);
+    g->SetMarkerStyle(7);
+    g->GetYaxis()->SetTitleOffset(1.4);
+    g->GetXaxis()->CenterTitle();
+    g->GetYaxis()->CenterTitle();
+
+    g->Draw("ap");
+
+    // Saving Graph
+    c3->Update();
+    TString gPath("/home/data/cnatzke/SimulationResults/Data/RadiusVariation/Graphics/corr");
+    gPath += 50;
+    gPath += "mm.pdf";
+    cout << gPath.Data() << endl;
+    c3->SaveAs(gPath);
+
+    // ROOT file
+    TString rtPath("/home/data/cnatzke/SimulationResults/Data/RadiusVariation/RootFiles/ggac");
+    rtPath += 50;
+    rtPath += "mm.pdf";
+    cout << rtPath.Data() << endl;
+    
+    TFile ggacroot(rtPath, "RECREATE");
+    ggacroot.WriteTObject(g);
+
+}
 

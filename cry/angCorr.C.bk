@@ -12,6 +12,9 @@
 #include "TMath.h"
 #include "TGraphErrors.h"
 #include "TLatex.h"
+#include "TPeak.h"
+#include "TMultiPeak.h"
+#include "TGRSIFit.h"
 
 using namespace std;
 
@@ -44,7 +47,7 @@ angCorr::angCorr(){
 //**********************************************************************************
 TH3D* angCorr::GetData(){
   
-	TFile* isoData = new TFile("/home/data/cnatzke/SimulationResults/Converted50mm.root");
+	TFile* isoData = new TFile("/home/data/cnatzke/SimulationResults/Converted40mm.root");
     isoData->cd("GriffinND");
     THnSparse * dataFull=(THnSparse*) gDirectory->Get("griffin_crystal_unsup_gamma_gamma_corr_edep_cry_sparse");
     TH3D * xyzProj=(TH3D*) dataFull->Projection(0,1,2); //3D Histogram
@@ -59,9 +62,8 @@ vector<TH1D*> angCorr::AngCut(TH3D* xyzProj, Double_t gateLow, Double_t gateHigh
 
     vector<TH1D*> histVec(52); //Initialize Vector of Histograms
 
-    TCanvas c1;
 
-    c1=TCanvas("c1","c1",600,600);
+    TCanvas c1("c1","c1",600,600);
     gStyle->SetOptStat(0);
     c1.SetLogy();
 
@@ -119,7 +121,7 @@ vector<TH1D*> angCorr::AngCut(TH3D* xyzProj, Double_t gateLow, Double_t gateHigh
 //**********************************************************************************
 vector<Double_t> angCorr::FitHisto(vector<TH1D*> histVec,Double_t ELow,Double_t EHigh, Double_t secPeak){
 	
-	c1=TCanvas("c1","c1",600,600);
+	TCanvas c1("c1","c1",600,600);
 	gStyle->SetOptStat(0);
 	c1.SetLogy();
 
@@ -137,7 +139,7 @@ vector<Double_t> angCorr::FitHisto(vector<TH1D*> histVec,Double_t ELow,Double_t 
 	
 	// Root File  name
 	TString hpath("/home/data/cnatzke/SimulationResults/Data/RadiusVariation/RootFiles/ggac");
-		hpath+=50;
+		hpath+=40;
 	hpath+="mmHistos.root";
 	cout<<hpath.Data() << endl;
     // Initialize .root file
@@ -310,14 +312,14 @@ void angCorr::AngularCorrHisto(vector<Double_t> wcounts, TString isotope,vector<
 	 //Save Histogram
 		c1->Update();
 		TString cpath("/home/data/cnatzke/SimulationResults/Data/RadiusVariation/Graphics/corr");
-		cpath+=50;
+		cpath+=40;
         cpath+="mm.pdf";
 		cout << cpath.Data() << endl;
 		c1->SaveAs(cpath);
 	
 	//Root File  name
 		TString rtpath("/home/data/cnatzke/SimulationResults/Data/RadiusVariation/RootFiles/ggac");
-		rtpath+=50;
+		rtpath+=40;
 		rtpath+="mm.root";
 		cout<<rtpath.Data() << endl;
 
