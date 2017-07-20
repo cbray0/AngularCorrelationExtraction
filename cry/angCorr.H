@@ -1,4 +1,5 @@
 
+#include <iostream>
 #include <vector>
 #include "TH1D.h"
 #include "TH2D.h"
@@ -6,6 +7,15 @@
 #include "THnSparse.h"
 #include "TCanvas.h"
 #include "TStyle.h"
+#include "TFile.h"
+#include "TTree.h"
+#include "TString.h"
+#include "TMath.h"
+#include "TGraphErrors.h"
+#include "TLatex.h"
+#include "TPeak.h"
+
+using namespace std;
 
 class angCorr{
 

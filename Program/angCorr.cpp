@@ -22,7 +22,7 @@ angCorr::angCorr() {
     Double_t counts[52];
     FitPeak(histVec, secondPeak, counts);       // Fits peak 
 
-    Double_t errors[52];
+/*    Double_t errors[52];
     Error(counts, errors);                      // Calculates Errors
 
     Double_t normCounts[52];
@@ -30,8 +30,12 @@ angCorr::angCorr() {
 
     Double_t normErrors[52];
     Normalize(errors, normErrors);
-
-    CorrelationPlot(normCounts, normErrors);
+*/
+    for(Int_t i=0;i<52;i++){
+        cout << *counts << endl;
+//        cout << normErrors << endl;
+    }
+//    CorrelationPlot(normCounts, normErrors);
 
 }
 
@@ -150,7 +154,8 @@ void angCorr::FitPeak(TH1D* histVec[52], Double_t secondPeak, Double_t counts[52
             histVec[i]->SetMaximum(20000);
 
             peak->Fit(histVec[i]);                          // Fit coincidence spectra
-            counts[i] = peak->GetArea();
+//            counts[i] = peak->GetArea();
+            counts[i] = 23.;
 
             TString hName("index");
             hName += i;
@@ -220,6 +225,7 @@ void angCorr::CorrelationPlot(Double_t normCounts[52], Double_t normError[52]){
     Double_t indexCos[52];
     Double_t indexError[52];
 
+
     for(Int_t i=0;i<52;i++){
         indexCos[i] = TMath::Cos(indexDeg[i]*TMath::Pi()/180);
         indexError[i] = 0.;
@@ -232,24 +238,24 @@ void angCorr::CorrelationPlot(Double_t normCounts[52], Double_t normError[52]){
 
     TString gName("1172 to 1332 keV Decay (4^{+} #rightarrow 2^{+} #rightarrow 0^{+});Cos(#theta);Normalized Counts");
     
-    TF1* fit = new TF1("fit", "(1+0.5*[0]*(3*x*x-1)+0.125*[1]*(35*x*x*x*x-30*x*x+3))*[2]",-1,1);
+//    TF1* fit = new TF1("fit", "(1+0.5*[0]*(3*x*x-1)+0.125*[1]*(35*x*x*x*x-30*x*x+3))*[2]",-1,1);
 //    fit->SetParameter(0,0.01);
 //    fit->SetParameter(1,1.0);
 //    fit->SetParameter(2,150);
-    fit->SetParName(0,"a2");
-    fit->SetParName(1,"a4");
-    fit->SetParName(2,"scale");
+//    fit->SetParName(0,"a2");
+//    fit->SetParName(1,"a4");
+//    fit->SetParName(2,"scale");
 
-    g->Fit(fit);
+//    g->Fit(fit);
     gStyle->SetOptFit(1);               // Displays fit information`
 
     Double_t max = TMath::MaxElement(52, g->GetY());
-    Double_t min = fit->GetMinimum();
+//    Double_t min = fit->GetMinimum();
 
     // Graph Styling
     g->SetTitle(gName);
     g->SetMaximum(max+20);
-    g->SetMinimum(min-20);
+//    g->SetMinimum(min-20);
     g->SetMarkerStyle(7);
     g->GetYaxis()->SetTitleOffset(1.4);
     g->GetXaxis()->CenterTitle();
@@ -268,11 +274,11 @@ void angCorr::CorrelationPlot(Double_t normCounts[52], Double_t normError[52]){
     // ROOT file
     TString rtPath("/home/data/cnatzke/SimulationResults/Data/RadiusVariation/RootFiles/ggac");
     rtPath += 50;
-    rtPath += "mm.pdf";
+    rtPath += "mm.root";
     cout << rtPath.Data() << endl;
     
-    TFile ggacroot(rtPath, "RECREATE");
-    ggacroot.WriteTObject(g);
+    TFile ggacRoot(rtPath, "RECREATE");
+    ggacRoot.WriteTObject(g);
 
 }
 

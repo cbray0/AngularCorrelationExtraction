@@ -3,20 +3,7 @@
 //June, 8  2017
 
 
-#include <iostream>
-#include <vector>
 #include "angCorr.H"
-#include "TFile.h"
-#include "TTree.h"
-#include "TString.h"
-#include "TMath.h"
-#include "TGraphErrors.h"
-#include "TLatex.h"
-#include "TPeak.h"
-#include "TMultiPeak.h"
-#include "TGRSIFit.h"
-
-using namespace std;
 
 angCorr::angCorr(){
     Double_t firstPeak=1172;
@@ -47,7 +34,7 @@ angCorr::angCorr(){
 //**********************************************************************************
 TH3D* angCorr::GetData(){
   
-	TFile* isoData = new TFile("/home/data/cnatzke/SimulationResults/Converted40mm.root");
+	TFile* isoData = new TFile("/home/data/cnatzke/SimulationResults/Converted50mm.root");
     isoData->cd("GriffinND");
     THnSparse * dataFull=(THnSparse*) gDirectory->Get("griffin_crystal_unsup_gamma_gamma_corr_edep_cry_sparse");
     TH3D * xyzProj=(TH3D*) dataFull->Projection(0,1,2); //3D Histogram
@@ -139,7 +126,7 @@ vector<Double_t> angCorr::FitHisto(vector<TH1D*> histVec,Double_t ELow,Double_t 
 	
 	// Root File  name
 	TString hpath("/home/data/cnatzke/SimulationResults/Data/RadiusVariation/RootFiles/ggac");
-		hpath+=40;
+		hpath+=50;
 	hpath+="mmHistos.root";
 	cout<<hpath.Data() << endl;
     // Initialize .root file
@@ -251,7 +238,7 @@ void angCorr::AngularCorrHisto(vector<Double_t> wcounts, TString isotope,vector<
 		indexErrors[i]=0;
 	}
 
-	TCanvas * c1=new TCanvas("c1","c1",600,600);
+    TCanvas c1("c1","c1",600,600);
 
 	TGraphErrors * g=new TGraphErrors(52,&indexVec[0],&wcounts[0],&indexErrors[0],&countErrors[0]);
 
@@ -310,16 +297,16 @@ void angCorr::AngularCorrHisto(vector<Double_t> wcounts, TString isotope,vector<
 
 
 	 //Save Histogram
-		c1->Update();
+		c1.Update();
 		TString cpath("/home/data/cnatzke/SimulationResults/Data/RadiusVariation/Graphics/corr");
-		cpath+=40;
+		cpath+=50;
         cpath+="mm.pdf";
 		cout << cpath.Data() << endl;
-		c1->SaveAs(cpath);
+		c1.SaveAs(cpath);
 	
 	//Root File  name
 		TString rtpath("/home/data/cnatzke/SimulationResults/Data/RadiusVariation/RootFiles/ggac");
-		rtpath+=40;
+		rtpath+=50;
 		rtpath+="mm.root";
 		cout<<rtpath.Data() << endl;
 

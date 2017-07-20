@@ -3,20 +3,7 @@
 //June, 8  2017
 
 
-#include <iostream>
-#include <vector>
 #include "angCorr.H"
-#include "TFile.h"
-#include "TTree.h"
-#include "TString.h"
-#include "TMath.h"
-#include "TGraphErrors.h"
-#include "TLatex.h"
-#include "TPeak.h"
-#include "TMultiPeak.h"
-#include "TGRSIFit.h"
-
-using namespace std;
 
 angCorr::angCorr(){
     Double_t firstPeak=1172;
@@ -251,7 +238,7 @@ void angCorr::AngularCorrHisto(vector<Double_t> wcounts, TString isotope,vector<
 		indexErrors[i]=0;
 	}
 
-	TCanvas * c1=new TCanvas("c1","c1",600,600);
+    TCanvas c1("c1","c1",600,600);
 
 	TGraphErrors * g=new TGraphErrors(52,&indexVec[0],&wcounts[0],&indexErrors[0],&countErrors[0]);
 
@@ -310,12 +297,12 @@ void angCorr::AngularCorrHisto(vector<Double_t> wcounts, TString isotope,vector<
 
 
 	 //Save Histogram
-		c1->Update();
+		c1.Update();
 		TString cpath("/home/data/cnatzke/SimulationResults/Data/RadiusVariation/Graphics/corr");
 		cpath+=40;
         cpath+="mm.pdf";
 		cout << cpath.Data() << endl;
-		c1->SaveAs(cpath);
+		c1.SaveAs(cpath);
 	
 	//Root File  name
 		TString rtpath("/home/data/cnatzke/SimulationResults/Data/RadiusVariation/RootFiles/ggac");
