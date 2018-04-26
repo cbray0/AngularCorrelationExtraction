@@ -7,8 +7,8 @@ var angCorr_8cpp =
     [ "FitHisto", "angCorr_8cpp.html#a1fcb505f2390ed3b0aed7986d0ab4d3b", null ],
     [ "WeightAdjust", "angCorr_8cpp.html#a2b91f75762f3a88589076f612be8757e", null ],
     [ "baseAddr", "angCorr_8cpp.html#ab57ce56117c978a451087e93dbe1e495", null ],
-    [ "energyTolerance", "angCorr_8cpp.html#ab8f1d081a417287120dbeb2dc15b16e6", null ],
-    [ "gateTolerance", "angCorr_8cpp.html#a155828b9bd94cf598c6db9b4f9ff68ed", null ],
+    [ "energyTolerance", "angCorr_8cpp.html#a6984464119d51db5fbb428717f9e609d", null ],
+    [ "gateTolerance", "angCorr_8cpp.html#ad66335ca01426d19469f3289ca8e033f", null ],
     [ "out", "angCorr_8cpp.html#a6b6d589c8106948670006f3e22b2c378", null ],
     [ "save", "angCorr_8cpp.html#abeb8baadb5d54f3e7a43fff7051f519f", null ],
     [ "status", "angCorr_8cpp.html#a6e27f49150e9a14580fb313cc2777e00", null ]

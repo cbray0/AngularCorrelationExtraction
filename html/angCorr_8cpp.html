@@ -109,7 +109,7 @@ $(document).ready(function(){initNavTree('angCorr_8cpp.html','');});
 </div><!--header-->
 <div class="contents">
 
-<p>A flexible GRSISort macro for extracting angular correlations from data.  
+<p>A flexible GRSISort macro for extracting angular correlations from (GRIFFIN) data.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;TH1D.h&quot;</code><br/>
 <code>#include &quot;TH2D.h&quot;</code><br/>
@@ -149,12 +149,12 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a155828b9bd94cf598c6db9b4f9ff68ed"><td class="memItemLeft" align="right" valign="top">Double_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="angCorr_8cpp.html#a155828b9bd94cf598c6db9b4f9ff68ed">gateTolerance</a> = 6</td></tr>
-<tr class="memdesc:a155828b9bd94cf598c6db9b4f9ff68ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gate energy tolerance (keV)  <a href="#a155828b9bd94cf598c6db9b4f9ff68ed">More...</a><br/></td></tr>
-<tr class="separator:a155828b9bd94cf598c6db9b4f9ff68ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8f1d081a417287120dbeb2dc15b16e6"><td class="memItemLeft" align="right" valign="top">Double_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="angCorr_8cpp.html#ab8f1d081a417287120dbeb2dc15b16e6">energyTolerance</a> = 6</td></tr>
-<tr class="memdesc:ab8f1d081a417287120dbeb2dc15b16e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Second gamma-ray energy tolerance (keV)  <a href="#ab8f1d081a417287120dbeb2dc15b16e6">More...</a><br/></td></tr>
-<tr class="separator:ab8f1d081a417287120dbeb2dc15b16e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad66335ca01426d19469f3289ca8e033f"><td class="memItemLeft" align="right" valign="top">const Double_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="angCorr_8cpp.html#ad66335ca01426d19469f3289ca8e033f">gateTolerance</a> = 6</td></tr>
+<tr class="memdesc:ad66335ca01426d19469f3289ca8e033f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gate energy tolerance (keV)  <a href="#ad66335ca01426d19469f3289ca8e033f">More...</a><br/></td></tr>
+<tr class="separator:ad66335ca01426d19469f3289ca8e033f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6984464119d51db5fbb428717f9e609d"><td class="memItemLeft" align="right" valign="top">const Double_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="angCorr_8cpp.html#a6984464119d51db5fbb428717f9e609d">energyTolerance</a> = 6</td></tr>
+<tr class="memdesc:a6984464119d51db5fbb428717f9e609d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Second gamma-ray energy tolerance (keV)  <a href="#a6984464119d51db5fbb428717f9e609d">More...</a><br/></td></tr>
+<tr class="separator:a6984464119d51db5fbb428717f9e609d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abeb8baadb5d54f3e7a43fff7051f519f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="angCorr_8cpp.html#abeb8baadb5d54f3e7a43fff7051f519f">save</a> =0</td></tr>
 <tr class="memdesc:abeb8baadb5d54f3e7a43fff7051f519f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save extra root files flag.  <a href="#abeb8baadb5d54f3e7a43fff7051f519f">More...</a><br/></td></tr>
 <tr class="separator:abeb8baadb5d54f3e7a43fff7051f519f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -169,7 +169,7 @@ Variables</h2></td></tr>
 <tr class="separator:a6e27f49150e9a14580fb313cc2777e00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A flexible GRSISort macro for extracting angular correlations from data. </p>
+<div class="textblock"><p>A flexible GRSISort macro for extracting angular correlations from (GRIFFIN) data. </p>
 <dl class="section author"><dt>Author</dt><dd>Connor Bray </dd>
 <dd>
 Connor Natzke</dd></dl>
@@ -177,7 +177,7 @@ Connor Natzke</dd></dl>
 <h3>Dependencies:</h3>
 <p>GRSISort (Commit 6423d91 or newer).</p>
 <h3>Usage instructions:</h3>
-<p>After you have converted the g4out.root file using NTuple, launch GRSISort. Load the commands using <code>.L <a class="el" href="angCorr_8cpp.html" title="A flexible GRSISort macro for extracting angular correlations from data. ">angCorr.cpp</a>+</code> (or the full path if it is in another directory).</p>
+<p>After you have converted the g4out.root file using NTuple, launch GRSISort. Load the commands using <code>.L <a class="el" href="angCorr_8cpp.html" title="A flexible GRSISort macro for extracting angular correlations from (GRIFFIN) data. ">angCorr.cpp</a>+</code> (or the full path if it is in another directory).</p>
 <p>Then you can use the <a class="el" href="angCorr_8cpp.html#a9b61ad24633a2c5369d31696b22c9212" title="Extracts all angular correlations from list of peaks in GRIFFIN converted data. ">angCorr()</a> command to calculate angular correlations. See documentation below for specific syntax, but in general you can either provide a set of energies to find all angular correlations between, or tell the command to find the n largest peaks and calculate angular correlations between those.</p>
 <h3>TODO:</h3>
 <p>Further testing and QA</p>
@@ -440,12 +440,12 @@ Connor Natzke</dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="ab8f1d081a417287120dbeb2dc15b16e6"></a>
+<a class="anchor" id="a6984464119d51db5fbb428717f9e609d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Double_t energyTolerance = 6</td>
+          <td class="memname">const Double_t energyTolerance = 6</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -456,12 +456,12 @@ Connor Natzke</dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a155828b9bd94cf598c6db9b4f9ff68ed"></a>
+<a class="anchor" id="ad66335ca01426d19469f3289ca8e033f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Double_t gateTolerance = 6</td>
+          <td class="memname">const Double_t gateTolerance = 6</td>
         </tr>
       </table>
 </div><div class="memdoc">
