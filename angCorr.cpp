@@ -6,7 +6,7 @@
 
     @date 25 Apr. 2018
 
-    @brief A flexible GRSISort macro for extracting angular correlations from data.
+    @brief A flexible GRSISort macro for extracting angular correlations from (GRIFFIN) data.
 
     ### Dependencies:
 
@@ -43,10 +43,10 @@
 using namespace std;
 
 /// Gate energy tolerance (keV)
-Double_t gateTolerance = 6;
+const Double_t gateTolerance = 6;
 
 /// Second gamma-ray energy tolerance (keV)
-Double_t energyTolerance = 6;
+const Double_t energyTolerance = 6;
 
 /// Save extra root files flag
 int save=0;
@@ -106,7 +106,7 @@ void FitHisto(vector<Double_t> &counts, vector<TH1D*> histVec, Double_t firstPea
         if(!peak->Fit(histVec[i],"ERMQS")){
             cout << "First Peak: " << firstPeak << ", Second Peak: " << secPeak << ", No data error." << endl;
             status=-1;
-            out << "First Peak: " << firstPeak << ", Second Peak: " << secPeak << ", No data error." << endl;
+            if(out.is_open()) out << "First Peak: " << firstPeak << ", Second Peak: " << secPeak << ", No data error." << endl;
             return;
         }
         counts[i]=peak->GetArea(); // Integrating peak to find counts
@@ -132,22 +132,13 @@ void FitHisto(vector<Double_t> &counts, vector<TH1D*> histVec, Double_t firstPea
 */
 void WeightAdjust(vector<Double_t> &counts, vector<Double_t> &error){
     for(Int_t i=0;i<52;i++){
-        if(i==1||i==6||i==8||i==25||i==26||i==43||i==45||i==50){
-                error[i]=TMath::Sqrt(counts[i])/128;
-                counts[i]/=128;
-        }
-        else if(i==5||i==10||i==12||i==24||i==27||i==39||i==41||i==46){
-                error[i]=TMath::Sqrt(counts[i])/48;
-                counts[i]/=48;
-        }
-        else if(i==7||i==9||i==11||i==14||i==18||i==20||i==31||i==33||i==37||i==40||i==42||i==44){
-                error[i]=TMath::Sqrt(counts[i])/96;
-                counts[i]/=96;
-        }
-        else{
-                error[i]=TMath::Sqrt(counts[i])/64;
-                counts[i]/=64;
-        }
+        Int_t factor;
+        if(i==1||i==6||i==8||i==25||i==26||i==43||i==45||i==50) factor = 128;
+        else if(i==5||i==10||i==12||i==24||i==27||i==39||i==41||i==46) factor = 48;
+        else if(i==7||i==9||i==11||i==14||i==18||i==20||i==31||i==33||i==37||i==40||i==42||i==44) factor = 96;
+        else factor = 64;
+        error[i]=TMath::Sqrt(counts[i])/factor;
+        counts[i]/=factor;
     }
 }
 
