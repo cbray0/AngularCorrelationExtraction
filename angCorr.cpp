@@ -42,11 +42,22 @@
 
 using namespace std;
 
-static Double_t gateTolerance = 6;
-static Double_t energyTolerance = 6;
+/// Gate energy tolerance (keV)
+Double_t gateTolerance = 6;
+
+/// Second gamma-ray energy tolerance (keV)
+Double_t energyTolerance = 6;
+
+/// Save extra root files flag
 int save=0;
+
+/// Base address for file IO
 string baseAddr="";
+
+/// Output file stream
 ofstream out;
+
+/// Extraction status indicator
 int status=0;
 
 /**
