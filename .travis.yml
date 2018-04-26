@@ -25,10 +25,6 @@ addons:
 
 # Build your code e.g. by calling make
 script:
-  - echo "Building, installing, and running GRSISort isn't possible at this time."
-
-# Generate and deploy documentation
-after_success:
   - cd $TRAVIS_BUILD_DIR
   - chmod +x generateDocumentationAndDeploy.sh
-- ./generateDocumentationAndDeploy.sh
+  - ./generateDocumentationAndDeploy.sh
