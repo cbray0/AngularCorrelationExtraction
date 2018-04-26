@@ -20,5 +20,3 @@ Then you can use the angCorr() command to calculate angular correlations. See do
 * Determine if multithreading is worthwhile, and, if so, if there is a way to do so without massive memory usage
 
 Go to [Github pages](https://cbray0.github.io/AngularCorrelationExtraction/html/index.html) for full documentation.
-
-[![Build Status](https://travis-ci.org/cbray0/AngularCorrelationExtraction.svg?branch=master)](https://travis-ci.org/cbray0/AngularCorrelationExtraction)
