@@ -10,7 +10,9 @@
 
     ### Dependencies:
 
-    GRSISort (Commit 6423d91 or newer).
+    * GRSISort (Commit 6423d91 or newer).
+
+    * Root 6 (With minuit2 enabled).
 
     ### Usage instructions:
 
