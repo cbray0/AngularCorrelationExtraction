@@ -105,11 +105,12 @@ $(document).ready(function(){initNavTree('md_README.html','');});
 <p>GRSISort (Commit 6423d91 or newer).</p>
 <h3>Usage instructions:</h3>
 <p>After you have converted the g4out.root file using NTuple, launch GRSISort. Load the commands using <code>.L <a class="el" href="angCorr_8cpp.html" title="A flexible GRSISort macro for extracting angular correlations from (GRIFFIN) data. ">angCorr.cpp</a>+</code> (or the full path if it is in another directory).</p>
-<p>Then you can use the <a class="el" href="angCorr_8cpp.html#a9b61ad24633a2c5369d31696b22c9212" title="Extracts all angular correlations from list of peaks in GRIFFIN converted data. ">angCorr()</a> command to calculate angular correlations. See documentation below for specific syntax, but in general you can either provide a set of energies to find all angular correlations between, or tell the command to find the n largest peaks and calculate angular correlations between those.</p>
+<p>Then you can use the <a class="el" href="angCorr_8cpp.html#a9b61ad24633a2c5369d31696b22c9212" title="Extracts all angular correlations from list of peaks in GRIFFIN converted data. ">angCorr()</a> command to calculate angular correlations. See the <a href="https://cbray0.github.io/AngularCorrelationExtraction/html/angCorr_8cpp.html">full documentation</a> for specific syntax, but in general you can either provide a set of energies to find all angular correlations between, or tell the command to find the n largest peaks and calculate angular correlations between those.</p>
+<p>Based on initial testing, the macro is capable of extracting all angular correlations between 80 peaks (3160 total angular correlations) in under an hour (single threaded test performed on an Intel(R) Xeon(R) CPU E5-2680 v3 @ 2.50GHz).</p>
 <h3>TODO:</h3>
 <ul>
 <li>Further testing and QA</li>
-<li>Determine if multithreading is worthwhile, and, if so, if there is a way to do so without massive memory usage</li>
+<li>Determine if multithreading is worthwhile and possible without massive memory usage</li>
 </ul>
 <p>Go to <a href="https://cbray0.github.io/AngularCorrelationExtraction/html/angCorr_8cpp.html">Github pages</a> for full documentation. </p>
 </div></div><!-- contents -->
